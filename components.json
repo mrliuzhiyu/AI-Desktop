@@ -1,0 +1,12 @@
+{
+  "claude": {
+    "name": "ClaudeBootAnimation",
+    "id": "local.ai-boot-animations.claude-boot-animation",
+    "tag_prefix": "claude-v"
+  },
+  "codex": {
+    "name": "GPTBootAnimation",
+    "id": "local.ai-boot-animations.gpt-boot-animation",
+    "tag_prefix": "gpt-v"
+  }
+}

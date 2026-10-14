@@ -15,7 +15,19 @@ New-Item -ItemType Directory -Force -Path $Out | Out-Null
 $refs = @("$wpf\PresentationFramework.dll", "$wpf\PresentationCore.dll", "$wpf\WindowsBase.dll",
           "$fw\System.Xaml.dll", "$fw\System.Windows.Forms.dll", "$fw\System.Drawing.dll",
           "$fw\System.Web.Extensions.dll", "$fw\System.Core.dll") | ForEach-Object { "/r:$_" }
+$versions = Get-Content (Join-Path $repoRoot 'versions.json') -Raw | ConvertFrom-Json
+$version = $versions.claude
+python (Join-Path $repoRoot 'scripts/check_version.py') --component claude
+if ($LASTEXITCODE -ne 0) { throw 'Invalid version' }
+$assemblyInfo = Join-Path $Out 'Version.g.cs'
+@"
+using System.Reflection;
+[assembly: AssemblyVersion("$version.0")]
+[assembly: AssemblyFileVersion("$version.0")]
+[assembly: AssemblyInformationalVersion("$version")]
+"@ | Set-Content -LiteralPath $assemblyInfo -Encoding UTF8
 $cscArgs = @('/nologo', '/target:winexe', '/optimize+', '/codepage:65001', '/platform:anycpu', "/out:$Out\ClaudeBootAnimation.exe") + $refs + @("$PSScriptRoot\src\ClaudeBootAnimation.cs")
+$cscArgs += $assemblyInfo
 & $csc @cscArgs
 if ($LASTEXITCODE -ne 0) { throw "编译失败" }
 New-Item -ItemType Directory -Force -Path "$Out\assets" | Out-Null

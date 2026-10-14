@@ -3,8 +3,9 @@
 # 用法：./build.sh                      用仓库自带的动画（assets/intro.mp4 + assets/loop.mp4）
 #       ./build.sh 开屏.mp4 循环.mp4     换成你自己的动画（开屏片尾要能接上循环片头）
 #       ./build.sh 开屏.mp4 循环.mp4 音轨  另配一条音轨到开屏画面上（需要 ffmpeg）
-set -e
+set -euo pipefail
 cd "${0:A:h}"
+zsh ../scripts/doctor.sh
 INTRO="${1:-assets/intro.mp4}"
 LOOP="${2:-assets/loop.mp4}"
 AUDIO="${3:-}"
@@ -15,9 +16,10 @@ APP=build/GPTBootAnimation.app
 rm -rf "$APP"; mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # 同时编出 Apple 芯片和 Intel 两份，再合成一个通用程序
 TMPB=$(mktemp -d)
+trap 'rm -rf "$TMPB"' EXIT
 for ARCH in arm64 x86_64; do
   swiftc -O -target $ARCH-apple-macos13 -o "$TMPB/$ARCH" Sources/main.swift \
-    -framework AppKit -framework AVFoundation 2> >(grep -v -E 'deprecated|^\s*(\||`|[0-9]+ \|)' >&2)
+    -framework AppKit -framework AVFoundation
 done
 lipo -create "$TMPB/arm64" "$TMPB/x86_64" -output "$APP/Contents/MacOS/GPTBootAnimation"
 rm -rf "$TMPB"
@@ -42,5 +44,6 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
   <key>LSUIElement</key><true/>
 </dict></plist>
 PLIST
-codesign --force --sign - "$APP" 2>/dev/null
+codesign --force --sign - "$APP"
+codesign --verify --deep --strict "$APP"
 echo "打包完成：$APP"

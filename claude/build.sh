@@ -12,6 +12,7 @@ AUDIO="${3:-}"
 [[ -f "$INTRO" && -f "$LOOP" ]] || { echo "找不到视频：$INTRO / $LOOP"; exit 1; }
 command -v swiftc >/dev/null || { echo "需要先装 Xcode 命令行工具：xcode-select --install"; exit 1; }
 
+VERSION=$(python3 ../scripts/check_version.py --component claude)
 APP=build/ClaudeBootAnimation.app
 rm -rf "$APP"; mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # 同时编出 Apple 芯片和 Intel 两份，再合成一个通用程序
@@ -31,7 +32,7 @@ else
   cp "$INTRO" "$APP/Contents/Resources/intro.mp4"
 fi
 cp "$LOOP" "$APP/Contents/Resources/loop.mp4"
-cat > "$APP/Contents/Info.plist" <<'PLIST'
+cat > "$APP/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
@@ -39,7 +40,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
   <key>CFBundleName</key><string>Claude 开机动画</string>
   <key>CFBundleExecutable</key><string>ClaudeBootAnimation</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>1.2.1</string>
+  <key>CFBundleShortVersionString</key><string>$VERSION</string>
+  <key>CFBundleVersion</key><string>$VERSION</string>
   <key>LSMinimumSystemVersion</key><string>13.0</string>
   <key>LSUIElement</key><true/>
 </dict></plist>

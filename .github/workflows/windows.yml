@@ -6,6 +6,11 @@ on:
   pull_request:
     paths: ['claude/**', 'codex/**', 'scripts/**', 'tests/**', '*.json', '.github/workflows/**']
   workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: windows-latest
@@ -19,6 +24,8 @@ jobs:
         shell: pwsh
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

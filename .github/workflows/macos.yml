@@ -32,3 +32,11 @@ jobs:
           NAME=$(python3 -c 'import json,os; print(json.load(open("components.json"))[os.environ["COMPONENT"]]["name"])')
           lipo -verify_arch arm64 x86_64 "$COMPONENT/build/$NAME.app/Contents/MacOS/$NAME"
           codesign --verify --deep --strict "$COMPONENT/build/$NAME.app"
+      - name: Upload validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-${{ matrix.component }}-${{ github.run_id }}
+          path: ${{ matrix.component }}/build/*.app/Contents/Info.plist
+          retention-days: 7
+          if-no-files-found: warn

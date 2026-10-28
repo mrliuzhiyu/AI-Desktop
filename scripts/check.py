@@ -10,6 +10,7 @@ def run(*args):
 
 def main():
     run(sys.executable,'scripts/check_version.py')
+    run(sys.executable,'scripts/check_docs.py')
     run(sys.executable,'-m','unittest','discover','-s','tests','-v')
     for key in ['claude','codex']:
         run(sys.executable,'scripts/check_media.py',key)

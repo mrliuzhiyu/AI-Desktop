@@ -13,11 +13,19 @@
 
 ![GPT 开机动画预览](codex/docs/preview.jpg)
 
-## 安装
+## 构建与安装
 
-从本地源码安装，具体步骤见 [Claude 安装说明](claude/README.md#安装) 和 [GPT 安装说明](codex/README.md#安装)。macOS 需要 Xcode 命令行工具；Windows 源码安装需要先用 FFmpeg 转换视频。
+环境：Python 3.11+、FFmpeg；macOS 需要 Xcode 命令行工具，Windows 使用系统 .NET Framework 编译器。
 
-下载脚本不再绑定个人仓库，运行前需指定可信发布包地址。已有旧版请先用旧版自带的卸载功能卸载，再安装此版本。
+```sh
+python scripts/check.py
+python scripts/build.py all
+```
+
+macOS 使用 `python3`。构建不会安装程序；安装方式见 [Claude](claude/README.md#安装) / [GPT](codex/README.md#安装)。
+下载脚本使用指定的可信 ZIP 地址，不绑定个人仓库。旧版请先用旧版自带的卸载功能卸载。
+
+开发、打包、版本与 CI 说明见 [文档索引](docs/README.md)。两平台 CI 覆盖 main，普通提交不发布安装包。
 
 ## 菜单栏 ✨ 能干什么
 
@@ -47,3 +55,7 @@
 ---
 
 **English:** Boot animations for AI desktop apps on macOS and Windows. Each one is a small menu-bar helper that overlays the app's window with an intro, then fades into a translucent, click-through looping background, without modifying the app itself. See the component READMEs for local installation steps.
+
+## 项目历史
+
+本项目基于既有源码与素材整理，并补充原生构建基建。Git 历史按维护者要求重建为 2026 年 10 月的分组时间线，不代表实际开发或首次公开日期；验收记录见 [docs/VERIFICATION.md](docs/VERIFICATION.md)。

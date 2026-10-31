@@ -20,7 +20,7 @@
 
 需要 **macOS 13 或更新**，Apple 芯片和 Intel 都行。
 
-从源码目录安装，需要 Xcode 命令行工具（没有的话先运行 `xcode-select --install`）。在项目根目录执行：
+从源码目录安装，需要 Python 3.11+、FFmpeg 和 Xcode 命令行工具（没有的话先运行 `xcode-select --install`）。在项目根目录执行：
 
 ```bash
 cd claude
@@ -33,13 +33,15 @@ cd claude
 
 ### Windows 10 / 11
 
-从源码安装需要先用 FFmpeg 将动画转为 Windows 可播放的 H.264。在项目根目录执行：
+从源码安装需要 Python 3.11+ 与 FFmpeg。构建脚本自动准备 Windows 视频，在项目根目录执行：
 
 ```powershell
-ffmpeg -i claude/assets/intro.mp4 -c:v libx264 -crf 23 -pix_fmt yuv420p -c:a copy claude/windows/assets/intro.mp4
-ffmpeg -i claude/assets/loop.mp4 -c:v libx264 -crf 23 -pix_fmt yuv420p -an claude/windows/assets/loop.mp4
+python scripts/check.py
+python scripts/build.py claude
 powershell -ExecutionPolicy Bypass -File claude/windows/install.ps1
 ```
+
+安装脚本会设置登录启动并打开设置窗口；只验证构建时不要执行最后一行。
 
 也可设置环境变量 `CBA_ZIP_URL` 为可信发布包的 HTTPS 地址，再运行 `windows/web-install.ps1`；macOS 的 `web-install.sh` 使用同名变量。项目不再内置个人仓库下载地址。
 

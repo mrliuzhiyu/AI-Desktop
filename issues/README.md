@@ -2,4 +2,4 @@
 
 | 记录 | 状态 |
 |---|---|
-| [构建基建基准](open/20261121-build-baseline.md) | 实现中 |
+| [构建基建基准](done/20261121-build-baseline.md) | 已验收 |

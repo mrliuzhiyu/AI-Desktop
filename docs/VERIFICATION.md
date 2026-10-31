@@ -21,9 +21,20 @@ verified: 2026-11-21
 正则扫描不是无泄漏证明。媒体元数据与现有文档截图已检查，动画已抽帧检查；不宣称逐帧、音频语义或隐写审计。
 保留字体、音效的公开许可署名及品牌兼容性标识，这些不属于当前维护者的私人资料。
 Windows 编译仍有两个未赋值字段警告（每个组件各两处）；不是编译失败。
-首次远端 Windows 构建和字幕验证、隐私及文档检查已通过。macOS 首轮构建成功，但通用架构校验命令参数顺序错误，已修复并补充两平台 ZIP 校验步骤，等待重跑；GUI 安装／卸载、开机自启仍未实机验证。
+远端 Windows 与 macOS 两组件矩阵、字幕渲染、双架构校验、签名检查及两平台 ZIP 校验均已通过。GUI 安装／卸载、开机自启仍未实机验证。macOS 使用 ad-hoc 签名，尚未公证。
 
 ## 历史说明
 
 本仓库从既有源码和素材基线重建。按维护者要求，34 个基建提交及其后续文档、修复提交重新安排到 2026 年 10 月的 12 个晚间日期，每日若干次；它们是整理后的 Git 日期，不代表实际开发或公开日期。本轮核实日期为上方 verified。
 提交作者使用维护者指定的 joy 与 GitHub noreply 邮箱。第三方代码和素材不因重建提交历史而转移著作权。
+
+## 远端证据
+
+以下记录对应实现提交 `e6ffae9`，全部成功：
+
+- [Windows 两组件构建、字幕与安装包](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44919963405)
+- [macOS 两组件通用构建、签名与安装包](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44919963401)
+- [完整历史隐私规则扫描](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44919963454)
+- [文档检查](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44919963417)
+
+远端为 Public，仅 main 分支。没有推送发布标签或创建 Release；打包流程已验证，正式发版仍按发布指南执行。

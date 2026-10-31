@@ -1,61 +1,139 @@
-# AI Boot Animations · AI 应用开机动画
+# Claude / GPT 开机动画
 
-给 Mac 和 Windows 上的 AI 桌面应用加开机动画：打开应用时先放一段开屏，再透出真正的界面，留下一层半透明的动态背景。每个动画都是独立的小程序，**不修改应用本体**，随时一键卸载。
+AI Desktop 提供两套独立的开机动画：**Claude · 月下剑光** 和 **GPT（ChatGPT）· 星空塔罗**。支持 Windows 与 macOS。
 
-| 应用 | 动画 | 安装 |
+打开应用时播放开屏，随后淡入半透明的循环画面。动画由独立程序绘制，不修改目标应用；背景支持点击穿透，可随时调整或关闭。
+
+<table>
+<tr>
+<th>Claude · 月下剑光</th>
+<th>GPT（ChatGPT）· 星空塔罗</th>
+</tr>
+<tr>
+<td><a href="claude/README.md"><img src="claude/docs/preview.jpg" width="460" alt="Claude 动画预览：月光下的持剑角色"></a></td>
+<td><a href="codex/README.md"><img src="codex/docs/preview.jpg" width="460" alt="ChatGPT 动画预览：星空中的塔罗角色"></a></td>
+</tr>
+<tr>
+<td>线稿、剑光与火凤，搭配开屏音效。</td>
+<td>展翅、发光牌阵与光带，搭配开屏配音。</td>
+</tr>
+</table>
+
+## 可以做什么
+
+- **开屏与背景分别控制**：只播放开屏、只保留背景，或同时开启。
+- **不妨碍操作**：循环背景支持点击穿透，继续使用原应用。
+- **即时调节**：在菜单栏或托盘里调整背景透明度和开屏音量。
+- **随时退出**：跳过开屏、关闭背景，或从菜单卸载。
+- **独立使用**：两个动画程序可以同时安装，分别控制。
+
+## 支持平台
+
+| 平台 | 系统要求 | 控制入口 |
 |---|---|---|
-| **Claude** 桌面端 | 月下持剑少女：线稿 → 上色 → 剑光、火凤、烟花，带音效和英文字幕；菜单栏 ✨ 可调背景浓度、开屏音量，可只留动态背景 | [claude/](claude/) |
-| **ChatGPT** 桌面端（含 Codex） | 星空塔罗龙娘：发光线稿 → 展翅、七张牌亮起 → 光带环绕 → 光汇入手心 → 甩牌挡嘴，带音效、英文配音和字幕；菜单栏 🌙 可调，和 Claude 版可以同时装；Mac 和 Windows 都有 | [codex/](codex/) |
+| Windows | Windows 10 / 11 | 系统托盘 |
+| macOS | macOS 13 或更新，Apple 芯片与 Intel | 菜单栏 |
 
-更多动画陆续加入。
+目标是本机运行的 Claude 或 ChatGPT 桌面应用，不用于浏览器网页。具体识别方式和参数见 [Claude 说明](claude/README.md) / [ChatGPT 说明](codex/README.md)。
 
-![Claude 开机动画预览](claude/docs/preview.jpg)
+## 从源码安装
 
-![GPT 开机动画预览](codex/docs/preview.jpg)
+源码安装需要 **Python 3.11+、FFmpeg 和 Git**，且相关命令已加入 PATH。Windows 使用系统自带的 .NET Framework 编译器；macOS 还需要 Xcode 命令行工具。
 
-## 构建与安装
-
-环境：Python 3.11+、FFmpeg；macOS 需要 Xcode 命令行工具，Windows 使用系统 .NET Framework 编译器。
+先获取项目：
 
 ```sh
+git clone https://github.com/mrliuzhiyu/AI-Desktop.git
+cd AI-Desktop
+```
+
+### Windows
+
+在项目根目录打开 PowerShell，先检查环境与项目：
+
+```powershell
 python scripts/check.py
+```
+
+选择需要的动画安装。安装脚本会自动构建、准备视频、设置登录启动并打开设置窗口。
+
+**Claude：**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\claude\windows\install.ps1
+```
+
+**GPT（ChatGPT）：**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\codex\windows\install.ps1
+```
+
+### macOS
+
+在项目根目录运行检查，再选择一个安装命令：
+
+```sh
+python3 scripts/check.py
+
+# Claude
+zsh claude/install.sh
+
+# ChatGPT
+zsh codex/install.sh
+```
+
+当前构建采用本地临时签名，未做开发者公证。系统安全提示与实际运行验证范围见 [构建说明](docs/BUILD.md) 和 [验收记录](docs/VERIFICATION.md)。
+
+> 已安装旧版的用户，请先使用旧版菜单中的卸载功能，再安装当前版本。
+
+## 设置与使用
+
+安装后打开对应应用，通过菜单栏或系统托盘进入设置。开屏和循环背景可以分别开关，调整立即生效。
+
+<table>
+<tr>
+<th>Claude 设置</th>
+<th>GPT 设置</th>
+</tr>
+<tr>
+<td><img src="claude/docs/settings.png" width="300" alt="Claude 设置：开屏、循环背景、透明度和音量"></td>
+<td><img src="codex/docs/settings.png" width="300" alt="ChatGPT 设置：开屏、循环背景、透明度和音量"></td>
+</tr>
+</table>
+
+截图展示 macOS 设置界面；Windows 通过托盘菜单提供对应控制。
+
+需要修改字幕、播放时间或替换自己的视频时，请阅读 [Claude 参数说明](claude/README.md#设置文件) 或 [ChatGPT 参数说明](codex/README.md#设置文件)。
+
+## 卸载
+
+使用菜单栏或托盘菜单中的“卸载”。也可运行安装目录内的卸载脚本；macOS 对应源码目录中的 `uninstall.sh`。
+
+卸载会移除动画程序、登录启动项及其设置和日志，不卸载 Claude 或 ChatGPT。
+
+## 开发与验证
+
+只构建、不安装：
+
+```sh
 python scripts/build.py all
 ```
 
-macOS 使用 `python3`。构建不会安装程序；安装方式见 [Claude](claude/README.md#安装) / [GPT](codex/README.md#安装)。
-下载脚本使用指定的可信 ZIP 地址，不绑定个人仓库。旧版请先用旧版自带的卸载功能卸载。
+macOS 使用 `python3`。构建产物保存在各组件的 `build/` 目录，安装包输出至 `dist/`。
 
-开发、打包、版本与 CI 说明见 [文档索引](docs/README.md)。两平台 CI 覆盖 main，普通提交不发布安装包。
+- [构建与本地验证](docs/BUILD.md)
+- [版本与发布](docs/RELEASE.md)
+- [验收记录与项目历史说明](docs/VERIFICATION.md)
+- [自动检查状态](https://github.com/mrliuzhiyu/AI-Desktop/actions)
 
-## 菜单栏 ✨ 能干什么
+## 授权与素材
 
-装好后菜单栏（Windows 是右下角托盘）常驻一个小星星 ✨，点开就能调，**拖动时立刻生效**：
+代码使用 [GPL-3.0](LICENSE)。动画素材另按各自许可提供，不能将代码许可视为素材的商用授权：
 
-- **打开 Claude 时**：要不要播开屏动画、要不要留循环背景（两个都关 = 原装 Claude）
-- **背景不透明度**：循环背景盖得多浓，0% 到 60%
-- **开屏音量**：跟随系统音量再按比例调，系统静音时自动没声
-- **现在，在 Claude 窗口上**：马上播一次开屏 / 开启循环背景 / 关掉
-- **设置窗口、设置文件、卸载**
+- [Claude 动画许可](claude/assets/LICENSE.md) · [音效来源](claude/CREDITS.md)
+- [ChatGPT 动画许可](codex/assets/LICENSE.md) · [音效与配音来源](codex/CREDITS.md)
 
-<p align="center">
-  <img src="claude/docs/menu.png" width="300" alt="菜单栏 ✨ 菜单">
-  &nbsp;&nbsp;
-  <img src="claude/docs/settings.png" width="330" alt="设置窗口">
-</p>
+字体的许可文件随源码和安装包保留。项目基于既有源码与素材整理，第三方作品的权利仍归各自权利人。
 
-详细说明、设置文件参数和卸载见 [claude/README.md](claude/README.md)。
-
-## 授权
-
-- 代码：[GPL-3.0](LICENSE)：可以自由使用和修改，发布改版时须同样开源并保留署名
-- 动画素材：各文件夹 `assets/LICENSE.md` 单独说明（Claude 动画为 CC BY-NC-ND 4.0：可安装分享，不可商用、不可改后再发布）
-
-> 非官方同人项目，与各 AI 应用的开发公司无关。Claude 是 Anthropic 的商标。
-
----
-
-**English:** Boot animations for AI desktop apps on macOS and Windows. Each one is a small menu-bar helper that overlays the app's window with an intro, then fades into a translucent, click-through looping background, without modifying the app itself. See the component READMEs for local installation steps.
-
-## 项目历史
-
-本项目基于既有源码与素材整理，并补充原生构建基建。Git 历史按维护者要求重建为 2026 年 10 月的分组时间线，不代表实际开发或首次公开日期；验收记录见 [docs/VERIFICATION.md](docs/VERIFICATION.md)。
+本项目与 Anthropic、OpenAI 无官方关联。Claude、ChatGPT 和 Codex 名称仅用于说明兼容的应用。

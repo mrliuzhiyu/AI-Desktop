@@ -1,6 +1,6 @@
-# Claude 开机动画 · Claude Boot Animation
+# Claude 开机动画
 
-> 属于 [ai-boot-animations](../README.md) 合集。
+> 属于 [AI Desktop](../README.md) 合集。
 
 给 Claude 桌面端（Mac / Windows）加一段开机动画：每次打开 Claude，先在窗口上播放一段持剑少女的开屏，进入循环画面后慢慢透出真正的 Claude 界面，留下一层半透明的动态背景。
 
@@ -138,7 +138,3 @@ Windows：托盘 ✨ 右键 →「卸载 Claude 开机动画…」，或运行 `
 - 代码：[GPL-3.0](../LICENSE)：可以自由使用、学习和修改；发布改过的版本时必须同样以 GPL-3.0 开源，并保留原作者署名
 - 动画素材：[CC BY-NC-ND 4.0](assets/LICENSE.md)，可以安装、分享，不能商用、不能改后再发布。角色是网上流传的克劳德形象，画面由 Seedance 生成，分镜与动作设计由作者完成
 - 音效：Freesound CC0 素材，见 [CREDITS.md](CREDITS.md)
-
----
-
-**English (short):** An unofficial boot animation for the Claude desktop app on macOS. A tiny menu-bar helper overlays Claude's window with an intro animation, then fades into a translucent, click-through looping background. It never modifies Claude.app. Install with `./install.sh` (requires macOS 13+ and Xcode Command Line Tools); uninstall from the ✨ menu or with `./uninstall.sh`. Code is GPL-3.0; animation assets are CC BY-NC-ND 4.0.

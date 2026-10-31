@@ -1,6 +1,6 @@
-# GPT 开机动画 · GPT Boot Animation
+# GPT 开机动画（ChatGPT）
 
-> 属于 [ai-boot-animations](../README.md) 合集，是 [Claude 开机动画](../claude/) 的姊妹版。
+> 属于 [AI Desktop](../README.md) 合集，是 [Claude 开机动画](../claude/) 的姊妹版。
 
 给 ChatGPT 桌面端（Mac，Codex 也是同一个应用）加一段开机动画：每次打开 ChatGPT，先在窗口上播放一段淡紫龙娘的塔罗牌开屏，进入循环画面后慢慢透出真正的 ChatGPT 界面，留下一层半透明的动态背景。
 
@@ -137,7 +137,3 @@ ChatGPT 开着的时候，菜单栏右边会出现一个月亮 🌙，点开就�
 - 代码：[GPL-3.0](../LICENSE)：可以自由使用、学习和修改；发布改过的版本时必须同样以 GPL-3.0 开源，并保留原作者署名
 - 动画素材：[CC BY-NC-ND 4.0](assets/LICENSE.md)，可以安装、分享，不能商用、不能改后再发布。角色是网上流传的 GPT 拟人形象，画面由即梦（Seedance 模型）生成，分镜与动作设计由作者完成
 - 音效：Freesound CC0 素材；配音用 ElevenLabs 生成。见 [CREDITS.md](CREDITS.md)
-
----
-
-**English (short):** An unofficial boot animation for the ChatGPT desktop app (bundle id `com.openai.codex`, which is also Codex) on macOS. A tiny menu-bar helper overlays ChatGPT's window with an intro animation, then fades into a translucent, click-through looping background. It never modifies ChatGPT.app and can be installed alongside the Claude boot animation. Install with `./install.sh` (macOS 13+); uninstall from the 🌙 menu or with `./uninstall.sh`. Code is GPL-3.0; animation assets are CC BY-NC-ND 4.0.

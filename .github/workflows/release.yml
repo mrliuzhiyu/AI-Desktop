@@ -1,0 +1,93 @@
+name: Release Packages
+on:
+  push:
+    tags: ['claude-v*', 'gpt-v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing component tag to package'
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      component: ${{ steps.select.outputs.component }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - id: select
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: python scripts/release_component.py
+  package:
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            platform: windows
+          - runner: macos-15
+            platform: macos
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: FFmpeg Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install ffmpeg -y --no-progress
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "C:/ProgramData/chocolatey/bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+      - name: FFmpeg macOS
+        if: runner.os == 'macOS'
+        run: brew list ffmpeg >/dev/null 2>&1 || brew install ffmpeg
+      - run: python scripts/check.py
+      - name: Package
+        run: python scripts/package.py ${{ needs.validate.outputs.component }} --platform ${{ matrix.platform }}
+      - name: SHA-256
+        run: python scripts/checksums.py dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.platform }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14
+  draft:
+    needs: [validate, package]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: dist
+          merge-multiple: true
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/* --verify-tag --draft --title "$RELEASE_TAG" --notes 'Validated native packages with SHA-256 checksums. Review before publishing.'

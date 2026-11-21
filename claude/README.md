@@ -14,6 +14,16 @@
 
 > 非官方同人项目，与 Anthropic 无关。Claude 是 Anthropic 的商标。
 
+## 下载已编译安装包
+
+- [Windows 安装包（1.2.1）](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-windows.zip)
+- [macOS 通用安装包（1.2.1）](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-macos.zip)
+- [版本说明与 SHA-256 校验文件](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.2.1)
+
+完整解压后，Windows 在程序目录运行 `powershell -ExecutionPolicy Bypass -File .\install.ps1`；macOS 在程序目录运行 `zsh install.sh`。安装包不需要 Python、FFmpeg 或编译工具。macOS 包尚未公证。
+
+以下步骤用于从源码安装。
+
 ## 安装
 
 ### macOS

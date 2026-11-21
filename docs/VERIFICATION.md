@@ -1,7 +1,7 @@
 ---
 status: active
 type: progress
-verified: 2026-11-21
+verified: 2026-11-22
 ---
 # 基建验收记录
 
@@ -37,4 +37,9 @@ Windows 编译仍有两个未赋值字段警告（每个组件各两处）；不
 - [完整历史隐私规则扫描](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44919963454)
 - [文档检查](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44919963417)
 
-远端为 Public，仅 main 分支。没有推送发布标签或创建 Release；打包流程已验证，正式发版仍按发布指南执行。
+远端为 Public，仅 main 分支。2026-11-22（北京时间）已发布两个版本，各含 Windows、macOS ZIP 与对应 SHA-256 文件：
+
+- [Claude 1.2.1](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.2.1) · [发布构建](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44922020408)
+- [GPT 1.1.1](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/gpt-v1.1.1) · [发布构建](https://github.com/mrliuzhiyu/AI-Desktop/actions/runs/44922020969)
+
+发布前已从草稿 Release 下载四个安装包，逐一复核 SHA-256、ZIP 结构、媒体编码和程序版本。上述安装／卸载与代码签名边界仍适用。文档 verified 日期按北京时间校验，避免 UTC runner 在跨午夜时误报未来日期。

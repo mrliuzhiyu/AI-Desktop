@@ -19,6 +19,31 @@ AI Desktop 提供两套独立的开机动画：**Claude · 月下剑光** 和 **
 </tr>
 </table>
 
+## 下载安装
+
+下载对应系统的安装包并完整解压。安装包已包含程序、视频和字体，**无需安装 Python、FFmpeg 或编译工具**。
+
+| 动画 | Windows 10 / 11 | macOS 13+（Apple 芯片 / Intel） | 版本与校验和 |
+|---|---|---|---|
+| Claude | [下载 Windows 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-windows.zip) | [下载 macOS 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-macos.zip) | [1.2.1 · SHA-256](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.2.1) |
+| GPT（ChatGPT） | [下载 Windows 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/gpt-v1.1.1/GPTBootAnimation-1.1.1-windows.zip) | [下载 macOS 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/gpt-v1.1.1/GPTBootAnimation-1.1.1-macos.zip) | [1.1.1 · SHA-256](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/gpt-v1.1.1) |
+
+**Windows：** 在解压后的程序目录打开 PowerShell，运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+**macOS：** 在解压后的程序目录打开终端，运行：
+
+```sh
+zsh install.sh
+```
+
+安装后会配置登录启动并打开设置窗口。macOS 包采用本地临时签名，尚未做开发者公证；不要将它视为已公证的软件。已有旧版请先用旧版自带的卸载功能卸载。
+
+每个安装包附带同名 `.sha256` 校验文件，可在对应版本页下载。需要自行编译时再使用下方源码安装步骤。
+
 ## 可以做什么
 
 - **开屏与背景分别控制**：只播放开屏、只保留背景，或同时开启。

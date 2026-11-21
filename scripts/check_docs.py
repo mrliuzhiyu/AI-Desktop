@@ -19,7 +19,7 @@ def check():
         if fields.get('type') not in {'spec', 'guide', 'progress', 'research', 'roadmap', 'reference'}:
             raise ValueError('Invalid document type: ' + path.name)
         verified = datetime.date.fromisoformat(fields.get('verified', ''))
-        if verified > datetime.date.today():
+        if verified > datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).date():
             raise ValueError('Future verification date')
         if fields['status'] == 'superseded' and not (docs / fields.get('superseded_by', '__missing__')).is_file():
             raise ValueError('Missing superseding document')

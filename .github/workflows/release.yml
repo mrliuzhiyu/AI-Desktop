@@ -64,6 +64,9 @@ jobs:
       - run: python scripts/check.py
       - name: Package
         run: python scripts/package.py ${{ needs.validate.outputs.component }} --platform ${{ matrix.platform }}
+      - name: Package standalone Claude desktop wallpaper
+        if: matrix.platform == 'macos' && needs.validate.outputs.component == 'claude'
+        run: zsh claude/package-wallpaper.sh
       - name: SHA-256
         run: python scripts/checksums.py dist
       - uses: actions/upload-artifact@v4

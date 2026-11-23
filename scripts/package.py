@@ -45,7 +45,8 @@ def package(key, target, skip_build=False):
             info = plistlib.loads((app/'Contents/Info.plist').read_bytes())
             if info.get('CFBundleShortVersionString') != versions[key] or info.get('CFBundleIdentifier') != catalog[key]['id']:
                 raise ValueError('App metadata differs from component manifest')
-            subprocess.run(['lipo',str(app/'Contents/MacOS'/name),'-verify_arch','arm64','x86_64'],check=True)
+            for arch in ['arm64', 'x86_64']:
+                subprocess.run(['lipo', str(app/'Contents/MacOS'/name), '-verify_arch', arch], check=True)
             subprocess.run(['codesign','--verify','--deep','--strict',str(app)],check=True)
             shutil.copytree(app,folder/app.name,symlinks=True)
             for file in ['install.sh','uninstall.sh']:

@@ -37,10 +37,15 @@ jobs:
           COMPONENT: ${{ matrix.component }}
         run: |
           NAME=$(python3 -c 'import json,os; print(json.load(open("components.json"))[os.environ["COMPONENT"]]["name"])')
-          lipo "$COMPONENT/build/$NAME.app/Contents/MacOS/$NAME" -verify_arch arm64 x86_64
+          for arch in arm64 x86_64; do
+            lipo "$COMPONENT/build/$NAME.app/Contents/MacOS/$NAME" -verify_arch "$arch"
+          done
           codesign --verify --deep --strict "$COMPONENT/build/$NAME.app"
       - name: Verify macOS archive
         run: python3 scripts/package.py ${{ matrix.component }} --platform macos --skip-build
+      - name: Package standalone Claude desktop wallpaper
+        if: matrix.component == 'claude'
+        run: zsh claude/package-wallpaper.sh
       - name: Upload validation evidence
         if: always()
         uses: actions/upload-artifact@v4

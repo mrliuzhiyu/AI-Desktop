@@ -1,6 +1,21 @@
-# Claude 开机动画
+# Claude · Mac 桌面壁纸与客户端壁纸
 
 > 属于 [AI Desktop](../README.md) 合集。
+
+## Mac 独立桌面壁纸
+
+[下载 Claude 桌面壁纸 · macOS 通用版](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.3.0/ClaudeWallpaper-1.3.0-macos.zip) · [版本与校验和](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.3.0)
+
+1. 解压 ZIP，将 **Claude 壁纸.app** 拖入「应用程序」，从那里双击打开。支持 macOS 13 及以上版本、Apple 芯片和 Intel。
+2. 「月下剑光」会在每块显示器的桌面图标后面静音循环，按原比例居中铺满。关闭 Claude 后仍会播放。
+3. 点菜单栏月亮图标，可暂停、继续或退出。勾选 **登录时自动播放** 后，下次登录 Mac 就会启动。如菜单提示需要批准，可从该项打开系统设置。
+4. 更新时先点「退出壁纸」，用新版替换「应用程序」里的同名 App，重新打开并核对登录选项。移除时取消登录选项、退出，再将 App 移到废纸篓。
+
+当前下载包采用本地临时签名，尚未做 Apple 公证。如果系统拦截了首次打开，在核对下载来源和校验和后，可按 [Apple 的打开说明](https://support.apple.com/zh-cn/102445) 操作。
+
+从源码构建可在项目根目录运行 `zsh claude/build-wallpaper.sh`。生成可分享的 ZIP 使用 `zsh claude/package-wallpaper.sh`。
+
+## Claude 客户端壁纸
 
 给 Claude 桌面端（Mac / Windows）加一段开机动画：每次打开 Claude，先在窗口上播放一段持剑少女的开屏，进入循环画面后慢慢透出真正的 Claude 界面，留下一层半透明的动态背景。
 
@@ -14,11 +29,11 @@
 
 > 非官方同人项目，与 Anthropic 无关。Claude 是 Anthropic 的商标。
 
-## 下载已编译安装包
+### 下载客户端壁纸安装包
 
-- [Windows 安装包（1.2.1）](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-windows.zip)
-- [macOS 通用安装包（1.2.1）](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-macos.zip)
-- [版本说明与 SHA-256 校验文件](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.2.1)
+- [Windows 安装包（1.3.0）](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.3.0/ClaudeBootAnimation-1.3.0-windows.zip)
+- [macOS 通用安装包（1.3.0）](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.3.0/ClaudeBootAnimation-1.3.0-macos.zip)
+- [版本说明与 SHA-256 校验文件](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.3.0)
 
 完整解压后，Windows 在程序目录运行 `powershell -ExecutionPolicy Bypass -File .\install.ps1`；macOS 在程序目录运行 `zsh install.sh`。安装包不需要 Python、FFmpeg 或编译工具。macOS 包尚未公证。
 

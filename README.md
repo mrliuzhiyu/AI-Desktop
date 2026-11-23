@@ -1,32 +1,24 @@
-# Claude / GPT 开机动画
+# AI Desktop · 客户端壁纸与 Mac 桌面壁纸
 
-AI Desktop 提供两套独立的开机动画：**Claude · 月下剑光** 和 **GPT（ChatGPT）· 星空塔罗**。支持 Windows 与 macOS。
+「月下剑光」有两种用法。**Mac 桌面壁纸**在桌面图标后面循环播放，关闭 Claude 后也会继续。**Claude 客户端壁纸**跟随 Claude 窗口，在打开客户端时播放开屏，随后显示半透明背景。两者可以独立安装。
 
-打开应用时播放开屏，随后淡入半透明的循环画面。动画由独立程序绘制，不修改目标应用；背景支持点击穿透，可随时调整或关闭。
+## 选择下载
 
-<table>
-<tr>
-<th>Claude · 月下剑光</th>
-<th>GPT（ChatGPT）· 星空塔罗</th>
-</tr>
-<tr>
-<td><a href="claude/README.md"><img src="claude/docs/preview.jpg" width="460" alt="Claude 动画预览：月光下的持剑角色"></a></td>
-<td><a href="codex/README.md"><img src="codex/docs/preview.jpg" width="460" alt="ChatGPT 动画预览：星空中的塔罗角色"></a></td>
-</tr>
-<tr>
-<td>线稿、剑光与火凤，搭配开屏音效。</td>
-<td>展翅、发光牌阵与光带，搭配开屏配音。</td>
-</tr>
-</table>
+| 想在哪里看 | macOS 13+（Apple 芯片 / Intel） | Windows 10 / 11 |
+|---|---|---|
+| Mac 桌面 · 月下剑光 | [下载 Mac 桌面壁纸 App](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.3.0/ClaudeWallpaper-1.3.0-macos.zip) | 仅 macOS |
+| Claude 客户端窗口 · 月下剑光 | [下载 Claude 客户端壁纸](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.3.0/ClaudeBootAnimation-1.3.0-macos.zip) | [下载 Claude 客户端壁纸](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.3.0/ClaudeBootAnimation-1.3.0-windows.zip) |
+| ChatGPT 客户端窗口 · 星空塔罗 | [下载 GPT 客户端动画](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/gpt-v1.1.1/GPTBootAnimation-1.1.1-macos.zip) | [下载 GPT 客户端动画](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/gpt-v1.1.1/GPTBootAnimation-1.1.1-windows.zip) |
 
-## 下载安装
+每个 ZIP 的 SHA-256 校验文件随版本提供。[Claude 1.3.0](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.3.0) · [GPT 1.1.1](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/gpt-v1.1.1)
 
-下载对应系统的安装包并完整解压。安装包已包含程序、视频和字体，**无需安装 Python、FFmpeg 或编译工具**。
+### 安装 Mac 桌面壁纸
 
-| 动画 | Windows 10 / 11 | macOS 13+（Apple 芯片 / Intel） | 版本与校验和 |
-|---|---|---|---|
-| Claude | [下载 Windows 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-windows.zip) | [下载 macOS 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/claude-v1.2.1/ClaudeBootAnimation-1.2.1-macos.zip) | [1.2.1 · SHA-256](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/claude-v1.2.1) |
-| GPT（ChatGPT） | [下载 Windows 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/gpt-v1.1.1/GPTBootAnimation-1.1.1-windows.zip) | [下载 macOS 安装包](https://github.com/mrliuzhiyu/AI-Desktop/releases/download/gpt-v1.1.1/GPTBootAnimation-1.1.1-macos.zip) | [1.1.1 · SHA-256](https://github.com/mrliuzhiyu/AI-Desktop/releases/tag/gpt-v1.1.1) |
+解压 ZIP，把 **Claude 壁纸.app** 拖到「应用程序」后双击。点菜单栏的月亮图标，可暂停、退出或勾选 **登录时自动播放**。更新时先退出壁纸，再用新版替换「应用程序」中的同名 App。首次打开遇到系统提示时，参阅[安装说明](claude/README.md#mac-独立桌面壁纸)。
+
+### 安装 Claude 或 ChatGPT 客户端壁纸
+
+完整解压对应系统的客户端安装包，按下面的步骤运行安装脚本。
 
 **Windows：** 在解压后的程序目录打开 PowerShell，运行：
 
@@ -44,7 +36,22 @@ zsh install.sh
 
 每个安装包附带同名 `.sha256` 校验文件，可在对应版本页下载。需要自行编译时再使用下方源码安装步骤。
 
-## 可以做什么
+## 客户端壁纸效果
+
+<table>
+<tr>
+<th>Claude · 月下剑光</th>
+<th>GPT（ChatGPT）· 星空塔罗</th>
+</tr>
+<tr>
+<td><a href="claude/README.md"><img src="claude/docs/preview.jpg" width="460" alt="Claude 动画预览：月光下的持剑角色"></a></td>
+<td><a href="codex/README.md"><img src="codex/docs/preview.jpg" width="460" alt="ChatGPT 动画预览：星空中的塔罗角色"></a></td>
+</tr>
+<tr>
+<td>线稿、剑光与火凤，搭配开屏音效。</td>
+<td>展翅、发光牌阵与光带，搭配开屏配音。</td>
+</tr>
+</table>
 
 - **开屏与背景分别控制**：只播放开屏、只保留背景，或同时开启。
 - **不妨碍操作**：循环背景支持点击穿透，继续使用原应用。
@@ -52,7 +59,7 @@ zsh install.sh
 - **随时退出**：跳过开屏、关闭背景，或从菜单卸载。
 - **独立使用**：两个动画程序可以同时安装，分别控制。
 
-## 支持平台
+## 客户端壁纸支持平台
 
 | 平台 | 系统要求 | 控制入口 |
 |---|---|---|
@@ -61,7 +68,7 @@ zsh install.sh
 
 目标是本机运行的 Claude 或 ChatGPT 桌面应用，不用于浏览器网页。具体识别方式和参数见 [Claude 说明](claude/README.md) / [ChatGPT 说明](codex/README.md)。
 
-## 从源码安装
+## 从源码安装客户端壁纸
 
 源码安装需要 **Python 3.11+、FFmpeg 和 Git**，且相关命令已加入 PATH。Windows 使用系统自带的 .NET Framework 编译器；macOS 还需要 Xcode 命令行工具。
 
@@ -112,7 +119,7 @@ zsh codex/install.sh
 
 > 已安装旧版的用户，请先使用旧版菜单中的卸载功能，再安装当前版本。
 
-## 设置与使用
+## 客户端设置与使用
 
 安装后打开对应应用，通过菜单栏或系统托盘进入设置。开屏和循环背景可以分别开关，调整立即生效。
 
@@ -131,7 +138,7 @@ zsh codex/install.sh
 
 需要修改字幕、播放时间或替换自己的视频时，请阅读 [Claude 参数说明](claude/README.md#设置文件) 或 [ChatGPT 参数说明](codex/README.md#设置文件)。
 
-## 卸载
+## 卸载客户端壁纸
 
 使用菜单栏或托盘菜单中的“卸载”。也可运行安装目录内的卸载脚本；macOS 对应源码目录中的 `uninstall.sh`。
 
